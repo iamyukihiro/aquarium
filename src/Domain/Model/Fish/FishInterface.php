@@ -6,4 +6,5 @@ namespace Goreboothero\Aquarium\Domain\Model\Fish;
 
 interface FishInterface
 {
+    public function swim() : string;
 }
