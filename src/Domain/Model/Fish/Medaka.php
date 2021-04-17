@@ -8,6 +8,11 @@ class Medaka implements FishInterface
 {
     private string $act;
 
+    public function getAct(): string
+    {
+        return $this->act;
+    }
+
     public function swim(): string
     {
         $this->act = 'Swim'; // TODO: Enum化を検討中

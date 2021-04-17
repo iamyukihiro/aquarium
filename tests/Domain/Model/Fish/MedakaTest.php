@@ -8,4 +8,17 @@ use PHPUnit\Framework\TestCase;
 
 class MedakaTest extends TestCase
 {
+    public function test_メダカは泳げること() : void
+    {
+        $SUT = $this->getSUT();
+        $actual = $SUT->swim();
+
+        $this->assertSame('泳いでるよー', $actual);
+        $this->assertSame('Swim', $SUT->getAct());
+    }
+
+    public function getSUT() : Medaka
+    {
+        return new Medaka();
+    }
 }
