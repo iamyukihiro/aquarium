@@ -4,7 +4,7 @@ use Goreboothero\Aquarium\Service\PsySH\TankCommand;
 
 return [
     'commands' => [
-        new TankCommand()
+        new TankCommand(new Goreboothero\Aquarium\Domain\Model\Tank\Tank())
     ],
 
     'defaultIncludes' => [
