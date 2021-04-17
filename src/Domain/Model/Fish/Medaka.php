@@ -4,9 +4,29 @@ declare(strict_types=1);
 
 namespace Goreboothero\Aquarium\Domain\Model\Fish;
 
+use Goreboothero\Aquarium\Domain\VO\Variety;
+
 class Medaka implements FishInterface
 {
-    private string $act;
+    private string $nickName;
+    private Variety $variety;
+    private string $act = '';
+
+    public function __construct(string $name, Variety $variety)
+    {
+        $this->nickName = $name;
+        $this->variety = $variety;
+    }
+
+    public function getVariety(): Variety
+    {
+        return $this->variety;
+    }
+
+    public function getNickName(): string
+    {
+        return $this->nickName;
+    }
 
     public function getAct(): string
     {
