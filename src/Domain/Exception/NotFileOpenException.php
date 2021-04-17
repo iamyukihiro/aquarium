@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace Goreboothero\Aquarium\Domain\Exception;
 
-class NotOpenFileException extends RuntimeException
+class NotFileOpenException extends RuntimeException
 {
 }
