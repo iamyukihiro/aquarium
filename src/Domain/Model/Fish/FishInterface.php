@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium\Domain\Model;
+namespace Goreboothero\Aquarium\Domain\Model\Fish;
 
 interface FishInterface
 {
