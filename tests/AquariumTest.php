@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace Goreboothero\Aquarium;
 
 use PHPUnit\Framework\TestCase;
-use Goreboothero\Aquarium\Aquarium;
 
 class AquariumTest extends TestCase
 {
-    protected Aquarium $spiderMan;
+    protected Aquarium $aquarium;
 
     protected function setUp(): void
     {
-        $this->spiderMan = new Aquarium();
+        $this->aquarium = new Aquarium();
     }
 
-    public function testIsInstanceOfSpiderMan(): void
+    public function test(): void
     {
-        $actual = $this->spiderMan;
+        $actual = $this->aquarium;
         $this->assertInstanceOf(Aquarium::class, $actual);
     }
 }
