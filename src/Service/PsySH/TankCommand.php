@@ -27,7 +27,7 @@ class TankCommand extends Command
     {
         $this
             ->setName('tank')
-            ->setDescription('水槽を閲覧します');
+            ->setDescription('水槽を覗きます');
     }
 
     /**
@@ -35,6 +35,7 @@ class TankCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln('水槽を覗きます');
         $tank = $this->loadTank->load();
 
         dd($tank);
