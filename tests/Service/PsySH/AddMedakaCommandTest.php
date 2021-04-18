@@ -12,6 +12,8 @@ class AddMedakaCommandTest extends TestCase
 {
     public function test(): void
     {
+        $this->markTestSkipped('機能テストを追加すること');
+
         $path = dirname(__FILE__).'/../../.memory/tank_test.memory';
 
         $saveTank = new SaveTank($path);
