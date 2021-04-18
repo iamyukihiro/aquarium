@@ -4,27 +4,17 @@ declare(strict_types=1);
 
 namespace Goreboothero\Aquarium\Service\PsySH;
 
-use Psy\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use PHPUnit\Framework\TestCase;
 
-class TankCommand extends Command
+class TankCommandTest extends TestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function configure()
+    public function test(): void
     {
-        $this
-            ->setName('tank')
-            ->setDescription('水槽を閲覧します');
+        $this->markTestSkipped('機能テストを追加すること');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    public function getSUT(string $path) : TankCommand
     {
-
+        return new TankCommand($path);
     }
 }

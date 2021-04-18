@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Goreboothero\Aquarium\Service\PsySH;
 
-use Goreboothero\Aquarium\Domain\Model\Tank\Tank;
+use Goreboothero\Aquarium\Infrastructure\LoadTank;
 use Psy\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class TankCommand extends Command
 {
-    private Tank $tank;
+    private LoadTank $loadTank;
 
-    public function __construct(Tank $tank)
+    public function __construct(LoadTank $loadTank)
     {
-        $this->tank = $tank;
+        $this->loadTank = $loadTank;
 
         parent::__construct();
     }
@@ -35,6 +35,8 @@ class TankCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        dd($this->tank);
+        $tank = $this->loadTank->load();
+
+        dd($tank);
     }
 }
