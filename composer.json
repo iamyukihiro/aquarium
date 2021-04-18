@@ -17,7 +17,6 @@
         "phpunit/phpunit": "^8.5",
         "squizlabs/php_codesniffer": "^3.5",
         "phpmd/phpmd": "^2.9",
-        "phpstan/phpstan": "^0.12",
         "vimeo/psalm": "^4.1",
         "phpmetrics/phpmetrics": "^2.7",
         "doctrine/coding-standard": "^8.1",
@@ -55,7 +54,6 @@
             "./vendor/bin/phpcbf src tests"
         ],
         "sa": [
-            "phpstan analyse -c phpstan.neon",
             "psalm --show-info=true"
         ],
         "metrics": [
