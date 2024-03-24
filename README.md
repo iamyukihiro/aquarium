@@ -1,4 +1,7 @@
-# goreboothero/aquarium
+# iamyukihiro/aquarium
+
+PHPで水槽を再現してみる遊び用のアプリケーションです。
+水槽にメダカを追加したり、水槽の中を見ることができます。
 
 ## Enviroment
 
@@ -11,15 +14,8 @@ Zend Engine v4.0.0-dev, Copyright (c) Zend Technologies
     with Xdebug v3.0.2, Copyright (c) 2002-2021, by Derick Rethans
 ```
 
-## Installation
-
-    composer install
-
 ## Available Commands
 
-    composer test              // Run unit test
-    composer tests             // Test and quality checks
-    composer cs-fix            // Fix the coding style
-    composer sa                // Run static analysys tools
-    composer run-script --list // List all commands
-    
+以下のディレクトリにあります。
+
+https://github.com/iamyukihiro/aquarium/tree/master/src/Service/PsySH
