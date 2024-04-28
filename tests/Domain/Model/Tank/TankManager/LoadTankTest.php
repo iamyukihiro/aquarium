@@ -1,11 +1,13 @@
 <?php
 
+/** @noinspection NonAsciiCharacters */
+
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium\Infrastructure;
+namespace Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
 
-use Goreboothero\Aquarium\Domain\Exception\NotFileOpenException;
-use Goreboothero\Aquarium\Domain\Model\Tank\Tank;
+use Iamyukihiro\Aquarium\Domain\Exception\NotFileOpenException;
+use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 use PHPUnit\Framework\TestCase;
 
 class LoadTankTest extends TestCase
@@ -14,7 +16,7 @@ class LoadTankTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->path = dirname(__FILE__).'/../../.memory/tank_test.memory';
+        $this->path = dirname(__FILE__) . '/../../.memory/tank_test.memory';
 
         $fileHandle = fopen($this->path, 'r+');
 
@@ -44,8 +46,8 @@ class LoadTankTest extends TestCase
         $SUT->load();
     }
 
-    public function getSUT(string $path) : LoadTank
+    public function getSUT(string $path): LoadTankUseCase
     {
-        return new LoadTank($path);
+        return new LoadTankUseCase($path);
     }
 }

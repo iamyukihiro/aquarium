@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium\Domain\Model\Tank;
+namespace Iamyukihiro\Aquarium\Domain\Model\Tank;
 
-use Goreboothero\Aquarium\Domain\Model\Fish\FishInterface;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\FishInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class TankTest extends TestCase
 {
-    public function test_水槽に魚を追加できること() : void
+    use ProphecyTrait;
+
+    public function test_水槽に魚を追加できること(): void
     {
         $fishP = $this->prophesize(FishInterface::class);
         $fish = $fishP->reveal();
@@ -17,10 +20,10 @@ class TankTest extends TestCase
         $SUT = $this->getSUT();
         $SUT->addFish($fish);
 
-        $this->assertSame([$fish], $SUT->getFishers());
+        $this->assertSame([$fish], $SUT->getFishList());
     }
 
-    public function getSUT() : Tank
+    public function getSUT(): Tank
     {
         return new Tank();
     }

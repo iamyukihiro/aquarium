@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium\Domain\Model\Fish;
+namespace Iamyukihiro\Aquarium\Domain\Model\Fish;
 
 interface FishInterface
 {
-    public function swim() : string;
 }

@@ -2,27 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium\Domain\Model\Tank;
+namespace Iamyukihiro\Aquarium\Domain\Model\Tank;
 
-use Goreboothero\Aquarium\Domain\Model\Fish\FishInterface;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\FishInterface;
 
 class Tank
 {
-    /**
-     * @var FishInterface[]
-     */
-    private array $fishers = [];
+    /** @var FishInterface[] */
+    private array $fishList = [];
 
-    public function addFish(FishInterface $fish) : void
+    public function addFish(FishInterface $fish): void
     {
-        $this->fishers[] = $fish;
+        $this->fishList[] = $fish;
     }
 
-    /**
-     * @return FishInterface[]
-     */
-    public function getFishers() : array
+    /** @return FishInterface[] */
+    public function getFishList(): array
     {
-        return $this->fishers;
+        return $this->fishList;
     }
 }
