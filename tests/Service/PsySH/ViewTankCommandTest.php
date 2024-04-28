@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium\Service\PsySH;
+namespace Iamyukihiro\Aquarium\Service\PsySH;
 
 use PHPUnit\Framework\TestCase;
 
-class TankCommandTest extends TestCase
+class ViewTankCommandTest extends TestCase
 {
     public function test(): void
     {
         $this->markTestSkipped('機能テストを追加すること');
     }
 
-    public function getSUT(string $path) : TankCommand
+    public function getSUT(string $path): ViewTankCommand
     {
-        return new TankCommand($path);
+        return new ViewTankCommand($path);
     }
 }

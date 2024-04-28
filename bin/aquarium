@@ -1,0 +1,3 @@
+#!/bin/sh
+cd bin/dev/ &&
+docker compose exec -it aquarium sh -c "composer aquarium"

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium\Service\PsySH;
+namespace Iamyukihiro\Aquarium\Service\PsySH;
 
-use Goreboothero\Aquarium\Infrastructure\LoadTank;
-use Goreboothero\Aquarium\Infrastructure\SaveTank;
+use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
 use PHPUnit\Framework\TestCase;
 
 class AddMedakaCommandTest extends TestCase
@@ -14,16 +13,13 @@ class AddMedakaCommandTest extends TestCase
     {
         $this->markTestSkipped('機能テストを追加すること');
 
-        $path = dirname(__FILE__).'/../../.memory/tank_test.memory';
+        $path = dirname(__FILE__) . '/../../.memory/tank_test.memory';
 
-        $saveTank = new SaveTank($path);
-        $loadTank = new LoadTank($path);
-
-        $this->getSUT($loadTank, $saveTank);
+        $this->getSUT(new TankManager($path));
     }
 
-    public function getSUT(LoadTank $loadTank, SaveTank $saveTank) : AddMedakaCommand
+    public function getSUT(TankManager $tm): AddMedakaCommand
     {
-        return new AddMedakaCommand($loadTank, $saveTank);
+        return new AddMedakaCommand($tm);
     }
 }

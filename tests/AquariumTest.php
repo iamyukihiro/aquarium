@@ -2,35 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium;
+namespace Iamyukihiro\Aquarium;
 
-use Goreboothero\Aquarium\Domain\Model\Fish\FishInterface;
-use Goreboothero\Aquarium\Domain\Model\Tank\Tank;
+use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class AquariumTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function test(): void
     {
-        $this->markTestSkipped('アクアリウムを楽しむという処理の仕様が決定していないのでスキップする');
+        $this->markTestSkipped();
 
         $tankP = $this->prophesize(Tank::class);
         $tank = $tankP->reveal();
 
-        $actual = $this->getSUT($tank, $fishers = []);
-
-        $actual->enjoy();
+        $actual = $this->getSUT($tank);
+        $actual->view($tank);
 
         $this->assertInstanceOf(Aquarium::class, $actual);
     }
 
-    /**
-     * @param Tank $tank
-     * @param FishInterface[] $fishers
-     * @return Aquarium
-     */
-    public function getSUT(Tank $tank, array $fishers) : Aquarium
+    public function getSUT(Tank $tank): Aquarium
     {
-        return new Aquarium($tank, $fishers);
+        return new Aquarium($tank);
     }
 }

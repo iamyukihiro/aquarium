@@ -1,35 +1,33 @@
 {
-    "name": "goreboothero/aquarium",
+    "name": "iamyukihiro/aquarium",
     "description": "",
     "license": "MIT",
     "authors": [
         {
             "name": "Yukihiro Arisawa",
-            "email": "goreboothero@gmail.com"
+            "email": "imyukihiro@gmail.com"
         }
     ],
     "require": {
-        "php": "8.0.*",
-        "psy/psysh": "^0.10.8",
-      "ext-http": "*"
+        "php": "8.3.*",
+        "psy/psysh": "^0.12",
+        "symfony/var-dumper": "^6.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5",
-        "squizlabs/php_codesniffer": "^3.5",
-        "phpmd/phpmd": "^2.9",
-        "vimeo/psalm": "^4.1",
-        "phpmetrics/phpmetrics": "^2.7",
-        "doctrine/coding-standard": "^8.1",
-        "symfony/var-dumper": "^5.2"
+        "phpunit/phpunit": "^11.1",
+        "doctrine/coding-standard": "^12.0",
+        "phpspec/prophecy": "^1.19",
+        "phpspec/prophecy-phpunit": "^2.2"
+
     },
     "autoload": {
         "psr-4": {
-            "Goreboothero\\Aquarium\\": "src/"
+            "Iamyukihiro\\Aquarium\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Goreboothero\\Aquarium\\": "tests/"
+            "Iamyukihiro\\Aquarium\\": "tests/"
         }
     },
     "scripts": {
@@ -38,14 +36,7 @@
         ],
         "tests": [
             "@cs",
-            "@sa",
             "@test"
-        ],
-        "coverage": [
-            "php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"
-        ],
-        "pcov": [
-            "php -dextension=pcov.so -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage  --coverage-clover=coverage.xml"
         ],
         "cs": [
             "./vendor/bin/phpcs --standard=phpcs.xml src tests"
@@ -53,31 +44,19 @@
         "cs-fix": [
             "./vendor/bin/phpcbf src tests"
         ],
-        "sa": [
-            "psalm --show-info=true"
-        ],
-        "metrics": [
-            "phpmetrics --report-html=build/metrics --excluded-dirs=src/Exception src"
-        ],
-        "sh": [
-            "./vendor/bin/psysh --config ./.config/psysh/config.php"
-        ],
-        "build": [
-            "@cs",
-            "@sa",
-            "@pcov",
-            "@metrics"
+        "aquarium": [
+            "./vendor/bin/psysh --config ./config/psysh/config.php"
         ]
     },
     "scripts-descriptions": {
         "test": "Run unit tests",
         "tests": "Run tests and quality checks",
-        "coverage": "Generate test coverage report",
-        "pcov": "Generate test coverage report (pcov)",
         "cs": "Check the coding style",
-        "cs-fix": "Fix the coding style",
-        "sa": "Run static analysis",
-        "metrics": "Build metrics report",
-        "build": "Build project"
+        "cs-fix": "Fix the coding style"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

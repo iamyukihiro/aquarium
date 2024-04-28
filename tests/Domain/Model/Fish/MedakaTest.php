@@ -2,28 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium\Domain\Model\Fish;
+namespace Iamyukihiro\Aquarium\Domain\Model\Fish;
 
-use Goreboothero\Aquarium\Domain\VO\Variety;
+use Iamyukihiro\Aquarium\Domain\VO\Variety;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class MedakaTest extends TestCase
 {
-    public function test_メダカは泳げること() : void
+    use ProphecyTrait;
+
+    public function test(): void
     {
         $varietyP = $this->prophesize(Variety::class);
         $varietyP->willBeConstructedWith(['みゆきメダカ']);
         $variety = $varietyP->reveal();
 
         $SUT = $this->getSUT('メダカ', $variety);
-        $actual = $SUT->swim();
+        $actual = $SUT->getAct();
 
-        $this->assertSame('泳いでるよー', $actual);
         $this->assertSame('Swim', $SUT->getAct());
     }
 
-    public function getSUT(string $name, Variety $variety) : Medaka
+    public function getSUT(string $name, Variety $variety): Medaka
     {
-        return new Medaka($name, $variety);
+        return new Medaka($name, $variety, 'Swim');
     }
 }

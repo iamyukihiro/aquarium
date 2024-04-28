@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  aquarium:
+    container_name: aquarium
+    image: ghcr.io/iamyukihiro/php-base:8.3
+    volumes:
+      - type: bind
+        source: ../../
+        target: /var/www/html/
+      - type: bind
+        source: ../../bin/dev/php/conf.d/php.ini
+        target: /usr/local/etc/php/conf.d/php_override.ini
+    tty: true

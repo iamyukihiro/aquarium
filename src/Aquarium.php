@@ -2,31 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\Aquarium;
+namespace Iamyukihiro\Aquarium;
 
-use Goreboothero\Aquarium\Domain\Model\Fish\FishInterface;
-use Goreboothero\Aquarium\Domain\Model\Tank\Tank;
+use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 
-final class Aquarium
+class Aquarium
 {
-    private Tank $tank;
-
-    /**
-     * @param Tank $tank
-     * @param FishInterface[] $fishers
-     */
-    public function __construct(Tank $tank, array $fishers = [])
-    {
-        foreach ($fishers as $fish)
-        {
-            $tank->addFish($fish);
-        }
-
-        $this->tank = $tank;
+    public function __construct(
+        private Tank $tank,
+    ) {
     }
 
-    public function enjoy() : string
+    public function view(Tank $tank): void
     {
-        dd($this->tank);
+        dump($tank);
     }
 }
