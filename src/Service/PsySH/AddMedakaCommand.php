@@ -22,7 +22,7 @@ class AddMedakaCommand extends Command
     /**
      * {@inheritDoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('add-medaka')
