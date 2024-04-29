@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Iamyukihiro\Aquarium\Domain\Logic\NicknameGenerator;
+use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
 use Iamyukihiro\Aquarium\Service\PsySH\AddMedakaCommand;
 use Iamyukihiro\Aquarium\Service\PsySH\InitTankCommand;
@@ -10,8 +12,10 @@ use Iamyukihiro\Aquarium\UseCase\AddMedakaUseCase;
 
 $tankPATH = dirname(__FILE__).'/../../.memory/tank.memory';
 
+$nicknameGenerator = new NicknameGenerator();
+$randomMedakaGenerator = new RandomMedakaGenerator($nicknameGenerator);
 $tankManager = new TankManager($tankPATH);
-$addMedakaUseCase = new AddMedakaUseCase($tankManager);
+$addMedakaUseCase = new AddMedakaUseCase($tankManager, $randomMedakaGenerator);
 
 return [
     'commands' => [
