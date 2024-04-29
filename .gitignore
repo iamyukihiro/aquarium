@@ -6,3 +6,4 @@
 /.php-version
 /.phpcs-cache
 /.phpunit.cache/
+.DS_Store
