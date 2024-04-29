@@ -7,12 +7,18 @@ namespace Iamyukihiro\Aquarium\Domain\ValueObject;
 class Breed
 {
     public function __construct(
-        private string $name
+        private string $fishType,
+        private string $breedName
     ) {
     }
 
-    public function getName(): string
+    public function getFishType(): string
     {
-        return $this->name;
+        return $this->fishType;
+    }
+
+    public function getBreedName(): string
+    {
+        return $this->breedName;
     }
 }
