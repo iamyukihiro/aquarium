@@ -10,7 +10,7 @@ use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
-use Iamyukihiro\Aquarium\Domain\VO\Variety;
+use Iamyukihiro\Aquarium\Domain\VO\Breed;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -31,7 +31,7 @@ class AddMedakaUseCaseTest extends TestCase
 
     public function test(): void
     {
-        $medaka = new Medaka('テストメダカ', new Variety('楊貴妃'), 'Sleeping');
+        $medaka = new Medaka('テストメダカ', new Breed('楊貴妃'), 'Sleeping');
         $this->randomMedakaGeneratorP->generate()->willReturn($medaka)->shouldBeCalled();
 
         $tank = new Tank();

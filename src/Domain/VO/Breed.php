@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\Domain\VO;
 
-class Variety
+class Breed
 {
     public function __construct(
         private string $name

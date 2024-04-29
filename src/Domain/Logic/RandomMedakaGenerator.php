@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Iamyukihiro\Aquarium\Domain\Logic;
 
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
-use Iamyukihiro\Aquarium\Domain\VO\Variety;
+use Iamyukihiro\Aquarium\Domain\VO\Breed;
 
 /**
  * The psychopathic class.
@@ -21,7 +21,7 @@ class RandomMedakaGenerator
     {
         return new Medaka(
             $this->nicknameGenerator->generate() . 'メダカ',
-            new Variety('みゆき'),
+            new Breed('みゆき'),
             'Swim'
         );
     }
