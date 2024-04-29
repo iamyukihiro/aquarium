@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Iamyukihiro\Aquarium\Domain\VO;
+namespace Iamyukihiro\Aquarium\Domain\ValueObject;
 
-class Variety
+class Breed
 {
     public function __construct(
         private string $name

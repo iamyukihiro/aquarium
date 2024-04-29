@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\Domain\Model\Fish;
 
-use Iamyukihiro\Aquarium\Domain\VO\Variety;
+use Iamyukihiro\Aquarium\Domain\ValueObject\Breed;
 
 class Medaka implements FishInterface
 {
     public function __construct(
         private string $nickName,
-        private Variety $variety,
+        private Breed $breed,
         private string $act,
     ) {
     }
@@ -20,9 +20,9 @@ class Medaka implements FishInterface
         return $this->nickName;
     }
 
-    public function getVariety(): Variety
+    public function getBreed(): Breed
     {
-        return $this->variety;
+        return $this->breed;
     }
 
     public function getAct(): string
