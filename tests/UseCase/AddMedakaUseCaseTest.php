@@ -6,6 +6,8 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\UseCase;
 
+use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
+use Iamyukihiro\Aquarium\Domain\Enum\FishType;
 use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
@@ -31,7 +33,11 @@ class AddMedakaUseCaseTest extends TestCase
 
     public function test(): void
     {
-        $medaka = new Medaka('テストメダカ', new Breed('楊貴妃'), 'Sleeping');
+        $medaka = new Medaka(
+            'テストメダカ',
+            new Breed(FishType::MEDAKA, BreedNameType::YOUKIHI),
+            'Sleeping'
+        );
         $this->randomMedakaGeneratorP->generate()->willReturn($medaka)->shouldBeCalled();
 
         $tank = new Tank();

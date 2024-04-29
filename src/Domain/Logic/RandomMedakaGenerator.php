@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\Domain\Logic;
 
+use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
+use Iamyukihiro\Aquarium\Domain\Enum\FishType;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\ValueObject\Breed;
 
@@ -20,9 +22,18 @@ class RandomMedakaGenerator
     public function generate(): Medaka
     {
         return new Medaka(
-            $this->nicknameGenerator->generate() . 'メダカ',
-            new Breed('みゆき'),
+            $this->nicknameGenerator->generate(),
+            new Breed(FishType::MEDAKA, $this->pickBreedName()),
             'Swim'
         );
+    }
+
+    private function pickBreedName(): string
+    {
+        $medakaBreedNameList = BreedNameType::getBreedNameForMedaka();
+
+        $randomIndex = array_rand($medakaBreedNameList);
+
+        return $medakaBreedNameList[$randomIndex];
     }
 }
