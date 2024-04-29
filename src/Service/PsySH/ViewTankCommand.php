@@ -20,7 +20,7 @@ class ViewTankCommand extends Command
     /**
      * {@inheritDoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('view-tank')

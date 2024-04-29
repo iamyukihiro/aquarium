@@ -4,18 +4,16 @@
 
 declare(strict_types=1);
 
-namespace Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
+namespace Iamyukihiro\Aquarium\Domain\Model\Tank;
 
 use Iamyukihiro\Aquarium\Domain\Exception\NotFileOpenException;
-use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
-use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
 use PHPUnit\Framework\TestCase;
 
-class SaveTankTest extends TestCase
+class TankManagerTest extends TestCase
 {
     private string $path;
 
-    protected function setUp(): void
+    private function setUpReadableTank(): void
     {
         $this->path = dirname(__FILE__) . '/../../.memory/tank_test.memory';
 
@@ -31,8 +29,10 @@ class SaveTankTest extends TestCase
         fclose($fileHandle);
     }
 
-    public function test_(): void
+    public function test_save(): void
     {
+        $this->setUpReadableTank();
+
         $tank = new Tank();
 
         $SUT = $this->getSUT($this->path);
@@ -47,8 +47,20 @@ class SaveTankTest extends TestCase
         );
     }
 
+    public function test_load(): void
+    {
+        $this->setUpReadableTank();
+
+        $SUT = $this->getSUT($this->path);
+        $actual = $SUT->load();
+
+        $this->assertInstanceOf(Tank::class, $actual);
+    }
+
     public function test_Tankファイルが開けない場合は例外を返すこと(): void
     {
+        $this->setUpReadableTank();
+
         $this->expectException(NotFileOpenException::class);
         $tank = new Tank();
 

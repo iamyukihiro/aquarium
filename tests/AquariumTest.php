@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection NonAsciiCharacters */
+
 declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium;

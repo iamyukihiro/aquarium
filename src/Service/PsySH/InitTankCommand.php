@@ -20,7 +20,7 @@ class InitTankCommand extends Command
     /**
      * {@inheritDoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('init-tank')
