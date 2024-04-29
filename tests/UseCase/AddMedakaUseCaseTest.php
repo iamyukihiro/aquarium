@@ -10,7 +10,7 @@ use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
-use Iamyukihiro\Aquarium\Domain\VO\Breed;
+use Iamyukihiro\Aquarium\Domain\ValueObject\Breed;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;

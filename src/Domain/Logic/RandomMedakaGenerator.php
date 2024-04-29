@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Iamyukihiro\Aquarium\Domain\Logic;
 
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
-use Iamyukihiro\Aquarium\Domain\VO\Breed;
+use Iamyukihiro\Aquarium\Domain\ValueObject\Breed;
 
 /**
  * The psychopathic class.

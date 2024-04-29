@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\Domain\Model\Fish;
 
-use Iamyukihiro\Aquarium\Domain\VO\Breed;
+use Iamyukihiro\Aquarium\Domain\ValueObject\Breed;
 
 interface FishInterface
 {

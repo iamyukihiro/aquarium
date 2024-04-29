@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Iamyukihiro\Aquarium\Domain\VO;
+namespace Iamyukihiro\Aquarium\Domain\ValueObject;
 
 class Breed
 {
