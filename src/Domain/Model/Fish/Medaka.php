@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\Domain\Model\Fish;
 
+use DateTimeImmutable;
 use Iamyukihiro\Aquarium\Domain\ValueObject\Breed;
 
 class Medaka implements FishInterface
@@ -12,6 +13,7 @@ class Medaka implements FishInterface
         private string $nickName,
         private Breed $breed,
         private string $act,
+        private DateTimeImmutable $birthday,
     ) {
     }
 
@@ -28,5 +30,10 @@ class Medaka implements FishInterface
     public function getAct(): string
     {
         return $this->act;
+    }
+
+    public function getBirthday(): DateTimeImmutable
+    {
+        return $this->birthday;
     }
 }

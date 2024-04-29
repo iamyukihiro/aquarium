@@ -18,6 +18,8 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 
+use function Symfony\Component\Clock\now;
+
 class AddMedakaUseCaseTest extends TestCase
 {
     use ProphecyTrait;
@@ -34,9 +36,10 @@ class AddMedakaUseCaseTest extends TestCase
     public function test(): void
     {
         $medaka = new Medaka(
-            'テストメダカ',
-            new Breed(FishType::MEDAKA, BreedNameType::YOUKIHI),
-            'Sleeping'
+            nickName: 'テストメダカ',
+            breed: new Breed(FishType::MEDAKA, BreedNameType::YOUKIHI),
+            act: 'Sleeping',
+            birthday: now()
         );
         $this->randomMedakaGeneratorP->generate()->willReturn($medaka)->shouldBeCalled();
 
