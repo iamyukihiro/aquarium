@@ -13,7 +13,7 @@ interface FishInterface
 
     public function getBreed(): Breed;
 
-    public function getAct(): string;
+    public function getCondition(): string;
 
     public function getBirthday(): DateTimeImmutable;
 }
