@@ -12,7 +12,8 @@ class Medaka implements FishInterface
     public function __construct(
         private string $nickName,
         private Breed $breed,
-        private string $act,
+        private string $condition,
+        private string $hungerLevel,
         private DateTimeImmutable $birthday,
     ) {
     }
@@ -27,9 +28,21 @@ class Medaka implements FishInterface
         return $this->breed;
     }
 
-    public function getAct(): string
+    public function getCondition(): string
     {
-        return $this->act;
+        return $this->condition;
+    }
+
+    public function getHungerLevel(): string
+    {
+        return $this->hungerLevel;
+    }
+
+    public function setHungerLevel(string $hungerLevel): self
+    {
+        $this->hungerLevel = $hungerLevel;
+
+        return $this;
     }
 
     public function getBirthday(): DateTimeImmutable

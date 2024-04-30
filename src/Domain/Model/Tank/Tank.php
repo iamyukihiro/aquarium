@@ -21,4 +21,13 @@ class Tank
     {
         return $this->fishList;
     }
+
+    /**
+     * @param FishInterface[] $fishList
+     * @return FishInterface[]
+     */
+    public function setFishList(array $fishList): array
+    {
+        return $this->fishList = $fishList;
+    }
 }

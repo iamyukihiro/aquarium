@@ -10,7 +10,6 @@ use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
 use Iamyukihiro\Aquarium\Domain\Enum\ConditionType;
 use Iamyukihiro\Aquarium\Domain\Enum\FishType;
 use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
-use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
@@ -22,17 +21,15 @@ use Prophecy\Prophecy\ObjectProphecy;
 
 use function Symfony\Component\Clock\now;
 
-class AddMedakaUseCaseTest extends TestCase
+class FeedingUseCaseTest extends TestCase
 {
     use ProphecyTrait;
 
     private ObjectProphecy $tankManagerP;
-    private ObjectProphecy $randomMedakaGeneratorP;
 
     protected function setUp(): void
     {
         $this->tankManagerP = $this->prophesize(TankManager::class);
-        $this->randomMedakaGeneratorP = $this->prophesize(RandomMedakaGenerator::class);
     }
 
     public function test(): void
@@ -41,18 +38,19 @@ class AddMedakaUseCaseTest extends TestCase
             nickName: 'テストメダカ',
             breed: new Breed(FishType::MEDAKA, BreedNameType::YOUKIHI),
             condition: ConditionType::FINE,
-            hungerLevel: HungerLevelType::STUFFED,
+            hungerLevel: HungerLevelType::STARVING,
             birthday: now()
         );
-        $this->randomMedakaGeneratorP->generate()->willReturn($medaka)->shouldBeCalled();
 
         $tank = new Tank();
+        $tank->addFish($medaka);
         $this->tankManagerP->load()->willReturn($tank)->shouldBeCalled();
         $this->tankManagerP->save(
             Argument::that(
                 function (Tank $tank) {
                     $this->assertCount(1, $tank->getFishList());
                     $this->assertSame('テストメダカ', $tank->getFishList()[0]->getNickName());
+                    $this->assertSame(HungerLevelType::STUFFED, $tank->getFishList()[0]->getHungerLevel());
 
                     return $tank;
                 }
@@ -60,14 +58,13 @@ class AddMedakaUseCaseTest extends TestCase
         )->shouldBeCalled();
 
         $SUT = $this->getSUT();
-        $SUT->add();
+        $SUT->up();
     }
 
-    public function getSUT(): AddMedakaUseCase
+    public function getSUT(): FeedingUseCase
     {
-        return new AddMedakaUseCase(
+        return new FeedingUseCase(
             $this->tankManagerP->reveal(),
-            $this->randomMedakaGeneratorP->reveal(),
         );
     }
 }

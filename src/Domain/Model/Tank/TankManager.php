@@ -44,6 +44,9 @@ class TankManager
 
     public function save(Tank $tank): void
     {
+        // TODO: Transaction
+        $this->init();
+
         $fileHandle = fopen($this->tankMemoryFilePath, 'r+');
         if (! $fileHandle) {
             throw new NotFileOpenException();
