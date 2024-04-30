@@ -7,6 +7,7 @@ namespace Iamyukihiro\Aquarium\Domain\Logic;
 use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
 use Iamyukihiro\Aquarium\Domain\Enum\ConditionType;
 use Iamyukihiro\Aquarium\Domain\Enum\FishType;
+use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\ValueObject\Breed;
 
@@ -28,6 +29,7 @@ class RandomMedakaGenerator
             nickName: $this->nicknameGenerator->generate(),
             breed: new Breed(FishType::MEDAKA, $this->pickBreedName()),
             condition: ConditionType::FINE,
+            hungerLevel: HungerLevelType::STUFFED,
             birthday: now()
         );
     }

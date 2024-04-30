@@ -9,6 +9,7 @@ namespace Iamyukihiro\Aquarium\UseCase;
 use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
 use Iamyukihiro\Aquarium\Domain\Enum\ConditionType;
 use Iamyukihiro\Aquarium\Domain\Enum\FishType;
+use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
 use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
@@ -40,6 +41,7 @@ class AddMedakaUseCaseTest extends TestCase
             nickName: 'テストメダカ',
             breed: new Breed(FishType::MEDAKA, BreedNameType::YOUKIHI),
             condition: ConditionType::FINE,
+            hungerLevel: HungerLevelType::STUFFED,
             birthday: now()
         );
         $this->randomMedakaGeneratorP->generate()->willReturn($medaka)->shouldBeCalled();
