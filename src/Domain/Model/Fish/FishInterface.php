@@ -15,5 +15,9 @@ interface FishInterface
 
     public function getCondition(): string;
 
+    public function getHungerLevel(): string;
+
+    public function setHungerLevel(string $hungerLevel): self;
+
     public function getBirthday(): DateTimeImmutable;
 }

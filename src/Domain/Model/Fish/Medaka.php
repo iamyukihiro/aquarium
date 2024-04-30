@@ -38,6 +38,13 @@ class Medaka implements FishInterface
         return $this->hungerLevel;
     }
 
+    public function setHungerLevel(string $hungerLevel): self
+    {
+        $this->hungerLevel = $hungerLevel;
+
+        return $this;
+    }
+
     public function getBirthday(): DateTimeImmutable
     {
         return $this->birthday;
