@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Iamyukihiro\Aquarium\UseCase;
 
 use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\LargeMouseBass;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
 
 class FeedingUseCase
@@ -17,15 +19,26 @@ class FeedingUseCase
     public function up(): void
     {
         $tank = $this->tankManager->load();
-        $fishList = $tank->getFishList();
+        $medakaList = $tank->getFishList(Medaka::class);
+        $largeMouseBassList = $tank->getFishList(LargeMouseBass::class);
 
         $newFishList = [];
-        foreach ($fishList as $fish) {
-            $newFishList[] = $fish->setHungerLevel(HungerLevelType::STUFFED);
+        foreach ($largeMouseBassList as $largeMouseBass) {
+            if (count($medakaList) === 0) {
+                break;
+            }
+
+            $randomIndex = array_rand($medakaList);
+            unset($medakaList[$randomIndex]);
+
+            $newFishList[] = $largeMouseBass->setHungerLevel(HungerLevelType::STUFFED);
+        }
+
+        foreach ($medakaList as $medaka) {
+            $newFishList[] = $medaka->setHungerLevel(HungerLevelType::STUFFED);
         }
 
         $tank->setFishList($newFishList);
-
         $this->tankManager->save($tank);
     }
 }

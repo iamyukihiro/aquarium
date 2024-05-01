@@ -37,7 +37,7 @@ class DownHungerLevelUseCaseTest extends TestCase
         $medaka = new Medaka(
             nickName: 'テストメダカ',
             breed: new Breed(FishType::MEDAKA, BreedNameType::YOUKIHI),
-            condition: ConditionLevelType::FINE,
+            conditionLevel: ConditionLevelType::FINE,
             hungerLevel: HungerLevelType::STUFFED,
             birthday: now()
         );

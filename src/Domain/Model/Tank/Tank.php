@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Iamyukihiro\Aquarium\Domain\Model\Tank;
 
 use Iamyukihiro\Aquarium\Domain\Model\Fish\AbstractFish;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\LargeMouseBass;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 
 class Tank
 {
@@ -16,10 +18,24 @@ class Tank
         $this->fishList[] = $fish;
     }
 
-    /** @return AbstractFish[] */
-    public function getFishList(): array
+    /**
+     * @param string|null $fishClassName
+     * @return AbstractFish[]
+     */
+    public function getFishList(string $fishClassName = null): array
     {
-        return $this->fishList;
+        if ($fishClassName === null) {
+            return $this->fishList;
+        }
+
+        $returnFishList = [];
+        foreach ($this->fishList as $fish) {
+            if ($fish::class === $fishClassName) {
+                $returnFishList[] = $fish;
+            }
+        }
+
+        return $returnFishList;
     }
 
     /**
