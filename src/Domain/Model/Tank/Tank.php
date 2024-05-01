@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\Domain\Model\Tank;
 
-use Iamyukihiro\Aquarium\Domain\Model\Fish\FishInterface;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\AbstractFish;
 
 class Tank
 {
-    /** @var FishInterface[] */
+    /** @var AbstractFish[] */
     private array $fishList = [];
 
-    public function addFish(FishInterface $fish): void
+    public function addFish(AbstractFish $fish): void
     {
         $this->fishList[] = $fish;
     }
 
-    /** @return FishInterface[] */
+    /** @return AbstractFish[] */
     public function getFishList(): array
     {
         return $this->fishList;
     }
 
     /**
-     * @param FishInterface[] $fishList
-     * @return FishInterface[]
+     * @param AbstractFish[] $fishList
+     * @return AbstractFish[]
      */
     public function setFishList(array $fishList): array
     {
