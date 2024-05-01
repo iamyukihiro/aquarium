@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\Domain\Model\Fish;
 
-class LargeMouseBass extends AbstractFish
+class Bass extends AbstractFish
 {
 }

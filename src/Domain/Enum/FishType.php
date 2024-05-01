@@ -7,5 +7,5 @@ namespace Iamyukihiro\Aquarium\Domain\Enum;
 class FishType
 {
     public const MEDAKA = 'メダカ';
-    public const LARGE_MOUSE_BASS = 'ブラックバス';
+    public const BASS = 'バス';
 }

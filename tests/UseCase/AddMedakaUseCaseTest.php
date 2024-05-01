@@ -11,9 +11,9 @@ use Iamyukihiro\Aquarium\Domain\Enum\ConditionLevelType;
 use Iamyukihiro\Aquarium\Domain\Enum\FishType;
 use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
 use Iamyukihiro\Aquarium\Domain\Logic\Probability;
-use Iamyukihiro\Aquarium\Domain\Logic\RandomLargeMouseBassGenerator;
+use Iamyukihiro\Aquarium\Domain\Logic\RandomBassGenerator;
 use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
-use Iamyukihiro\Aquarium\Domain\Model\Fish\LargeMouseBass;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\Bass;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
@@ -31,14 +31,14 @@ class AddMedakaUseCaseTest extends TestCase
 
     private ObjectProphecy $tankManagerP;
     private ObjectProphecy $randomMedakaGeneratorP;
-    private ObjectProphecy $randomLargeMouseBassGeneratorP;
+    private ObjectProphecy $randomBassGeneratorP;
     private ObjectProphecy $probabilityP;
 
     protected function setUp(): void
     {
         $this->tankManagerP = $this->prophesize(TankManager::class);
         $this->randomMedakaGeneratorP = $this->prophesize(RandomMedakaGenerator::class);
-        $this->randomLargeMouseBassGeneratorP = $this->prophesize(RandomLargeMouseBassGenerator::class);
+        $this->randomBassGeneratorP = $this->prophesize(RandomBassGenerator::class);
         $this->probabilityP = $this->prophesize(Probability::class);
     }
 
@@ -74,14 +74,14 @@ class AddMedakaUseCaseTest extends TestCase
     public function test_3％の確率でブラックバスが水槽に入ること(): void
     {
         $this->probabilityP->calc(3)->willReturn(true)->shouldBeCalled();
-        $largeMouseBass = new LargeMouseBass(
+        $largeMouseBass = new Bass(
             nickName: 'テストブラックバス',
-            breed: new Breed(FishType::LARGE_MOUSE_BASS, BreedNameType::BIWAKO),
+            breed: new Breed(FishType::BASS, BreedNameType::LARGE_MOUSE),
             conditionLevel: ConditionLevelType::FINE,
             hungerLevel: HungerLevelType::STUFFED,
             birthday: now()
         );
-        $this->randomLargeMouseBassGeneratorP->generate()->willReturn($largeMouseBass)->shouldBeCalled();
+        $this->randomBassGeneratorP->generate()->willReturn($largeMouseBass)->shouldBeCalled();
 
         $tank = new Tank();
         $this->tankManagerP->load()->willReturn($tank)->shouldBeCalled();
@@ -105,7 +105,7 @@ class AddMedakaUseCaseTest extends TestCase
         return new AddMedakaUseCase(
             $this->tankManagerP->reveal(),
             $this->randomMedakaGeneratorP->reveal(),
-            $this->randomLargeMouseBassGeneratorP->reveal(),
+            $this->randomBassGeneratorP->reveal(),
             $this->probabilityP->reveal(),
         );
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Iamyukihiro\Aquarium\UseCase;
 
 use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
-use Iamyukihiro\Aquarium\Domain\Model\Fish\LargeMouseBass;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\Bass;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
 
@@ -20,7 +20,7 @@ class FeedingUseCase
     {
         $tank = $this->tankManager->load();
         $medakaList = $tank->getFishList(Medaka::class);
-        $largeMouseBassList = $tank->getFishList(LargeMouseBass::class);
+        $largeMouseBassList = $tank->getFishList(Bass::class);
 
         $newFishList = [];
         foreach ($largeMouseBassList as $largeMouseBass) {
