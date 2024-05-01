@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Iamyukihiro\Aquarium\Domain\Logic\NicknameGenerator;
+use Iamyukihiro\Aquarium\Domain\Logic\Probability;
+use Iamyukihiro\Aquarium\Domain\Logic\RandomLargeMouseBassGenerator;
 use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
 use Iamyukihiro\Aquarium\Service\PsySH\AddMedakaCommand;
@@ -18,8 +20,10 @@ $tankPATH = dirname(__FILE__).'/../../.memory/tank.memory';
 
 $nicknameGenerator = new NicknameGenerator();
 $randomMedakaGenerator = new RandomMedakaGenerator($nicknameGenerator);
+$randomLargeMouseBassGenerator = new RandomLargeMouseBassGenerator($nicknameGenerator);
+$probability = new Probability();
 $tankManager = new TankManager($tankPATH);
-$addMedakaUseCase = new AddMedakaUseCase($tankManager, $randomMedakaGenerator);
+$addMedakaUseCase = new AddMedakaUseCase($tankManager, $randomMedakaGenerator, $randomLargeMouseBassGenerator, $probability);
 $feedingUseCase = new FeedingUseCase($tankManager);
 $downHungerLevelUseCase = new DownHungerLevelUseCase($tankManager);
 

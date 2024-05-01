@@ -32,6 +32,7 @@ class AddMedakaCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        clearstatcache();
         $this->addMedakaUseCase->add();
 
         $output->writeln('水槽にメダカを追加しました');

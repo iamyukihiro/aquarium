@@ -14,6 +14,8 @@ class BreedNameType
     public const SHIRO = 'シロ';
     public const YOZAKURA = '夜桜';
 
+    public const BIWAKO = '琵琶湖産'; // TODO: bug
+
     /** @return string[] */
     public static function getBreedNameForMedaka(): array
     {
