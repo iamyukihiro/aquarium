@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Iamyukihiro\Aquarium\Domain\Enum;
 
-class ConditionType
+class ConditionLevelType
 {
     public const FINE = '元気';
     public const BAD = '不調';

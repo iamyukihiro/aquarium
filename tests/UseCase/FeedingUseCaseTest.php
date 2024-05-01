@@ -7,7 +7,7 @@ declare(strict_types=1);
 namespace Iamyukihiro\Aquarium\UseCase;
 
 use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
-use Iamyukihiro\Aquarium\Domain\Enum\ConditionType;
+use Iamyukihiro\Aquarium\Domain\Enum\ConditionLevelType;
 use Iamyukihiro\Aquarium\Domain\Enum\FishType;
 use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
@@ -37,7 +37,7 @@ class FeedingUseCaseTest extends TestCase
         $medaka = new Medaka(
             nickName: 'テストメダカ',
             breed: new Breed(FishType::MEDAKA, BreedNameType::YOUKIHI),
-            condition: ConditionType::FINE,
+            condition: ConditionLevelType::FINE,
             hungerLevel: HungerLevelType::STARVING,
             birthday: now()
         );

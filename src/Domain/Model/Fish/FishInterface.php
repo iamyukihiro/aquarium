@@ -13,7 +13,7 @@ interface FishInterface
 
     public function getBreed(): Breed;
 
-    public function getCondition(): string;
+    public function getConditionLevel(): string;
 
     public function getHungerLevel(): string;
 

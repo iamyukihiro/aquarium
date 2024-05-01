@@ -12,7 +12,7 @@ class Medaka implements FishInterface
     public function __construct(
         private string $nickName,
         private Breed $breed,
-        private string $condition,
+        private string $conditionLevel,
         private string $hungerLevel,
         private DateTimeImmutable $birthday,
     ) {
@@ -28,9 +28,9 @@ class Medaka implements FishInterface
         return $this->breed;
     }
 
-    public function getCondition(): string
+    public function getConditionLevel(): string
     {
-        return $this->condition;
+        return $this->conditionLevel;
     }
 
     public function getHungerLevel(): string

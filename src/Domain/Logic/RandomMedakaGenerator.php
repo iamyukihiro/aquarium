@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Iamyukihiro\Aquarium\Domain\Logic;
 
 use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
-use Iamyukihiro\Aquarium\Domain\Enum\ConditionType;
+use Iamyukihiro\Aquarium\Domain\Enum\ConditionLevelType;
 use Iamyukihiro\Aquarium\Domain\Enum\FishType;
 use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
@@ -28,7 +28,7 @@ class RandomMedakaGenerator
         return new Medaka(
             nickName: $this->nicknameGenerator->generate(),
             breed: new Breed(FishType::MEDAKA, $this->pickBreedName()),
-            condition: ConditionType::FINE,
+            conditionLevel: ConditionLevelType::FINE,
             hungerLevel: HungerLevelType::STUFFED,
             birthday: now()
         );
