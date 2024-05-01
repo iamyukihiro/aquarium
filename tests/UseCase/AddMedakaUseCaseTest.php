@@ -7,10 +7,13 @@ declare(strict_types=1);
 namespace Iamyukihiro\Aquarium\UseCase;
 
 use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
-use Iamyukihiro\Aquarium\Domain\Enum\ConditionType;
+use Iamyukihiro\Aquarium\Domain\Enum\ConditionLevelType;
 use Iamyukihiro\Aquarium\Domain\Enum\FishType;
 use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
+use Iamyukihiro\Aquarium\Domain\Logic\Probability;
+use Iamyukihiro\Aquarium\Domain\Logic\RandomLargeMouseBassGenerator;
 use Iamyukihiro\Aquarium\Domain\Logic\RandomMedakaGenerator;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\LargeMouseBass;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
@@ -28,19 +31,24 @@ class AddMedakaUseCaseTest extends TestCase
 
     private ObjectProphecy $tankManagerP;
     private ObjectProphecy $randomMedakaGeneratorP;
+    private ObjectProphecy $randomLargeMouseBassGeneratorP;
+    private ObjectProphecy $probabilityP;
 
     protected function setUp(): void
     {
         $this->tankManagerP = $this->prophesize(TankManager::class);
         $this->randomMedakaGeneratorP = $this->prophesize(RandomMedakaGenerator::class);
+        $this->randomLargeMouseBassGeneratorP = $this->prophesize(RandomLargeMouseBassGenerator::class);
+        $this->probabilityP = $this->prophesize(Probability::class);
     }
 
     public function test(): void
     {
+        $this->probabilityP->calc(3)->willReturn(false)->shouldBeCalled();
         $medaka = new Medaka(
             nickName: 'テストメダカ',
             breed: new Breed(FishType::MEDAKA, BreedNameType::YOUKIHI),
-            condition: ConditionType::FINE,
+            conditionLevel: ConditionLevelType::FINE,
             hungerLevel: HungerLevelType::STUFFED,
             birthday: now()
         );
@@ -63,11 +71,42 @@ class AddMedakaUseCaseTest extends TestCase
         $SUT->add();
     }
 
+    public function test_3％の確率でブラックバスが水槽に入ること(): void
+    {
+        $this->probabilityP->calc(3)->willReturn(true)->shouldBeCalled();
+        $largeMouseBass = new LargeMouseBass(
+            nickName: 'テストブラックバス',
+            breed: new Breed(FishType::LARGE_MOUSE_BASS, BreedNameType::BIWAKO),
+            conditionLevel: ConditionLevelType::FINE,
+            hungerLevel: HungerLevelType::STUFFED,
+            birthday: now()
+        );
+        $this->randomLargeMouseBassGeneratorP->generate()->willReturn($largeMouseBass)->shouldBeCalled();
+
+        $tank = new Tank();
+        $this->tankManagerP->load()->willReturn($tank)->shouldBeCalled();
+        $this->tankManagerP->save(
+            Argument::that(
+                function (Tank $tank) {
+                    $this->assertCount(1, $tank->getFishList());
+                    $this->assertSame('テストブラックバス', $tank->getFishList()[0]->getNickName());
+
+                    return $tank;
+                }
+            )
+        )->shouldBeCalled();
+
+        $SUT = $this->getSUT();
+        $SUT->add();
+    }
+
     public function getSUT(): AddMedakaUseCase
     {
         return new AddMedakaUseCase(
             $this->tankManagerP->reveal(),
             $this->randomMedakaGeneratorP->reveal(),
+            $this->randomLargeMouseBassGeneratorP->reveal(),
+            $this->probabilityP->reveal(),
         );
     }
 }
