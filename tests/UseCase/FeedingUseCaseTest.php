@@ -10,7 +10,7 @@ use Iamyukihiro\Aquarium\Domain\Enum\BreedNameType;
 use Iamyukihiro\Aquarium\Domain\Enum\ConditionLevelType;
 use Iamyukihiro\Aquarium\Domain\Enum\FishType;
 use Iamyukihiro\Aquarium\Domain\Enum\HungerLevelType;
-use Iamyukihiro\Aquarium\Domain\Model\Fish\LargeMouseBass;
+use Iamyukihiro\Aquarium\Domain\Model\Fish\Bass;
 use Iamyukihiro\Aquarium\Domain\Model\Fish\Medaka;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\Tank;
 use Iamyukihiro\Aquarium\Domain\Model\Tank\TankManager;
@@ -78,9 +78,9 @@ class FeedingUseCaseTest extends TestCase
             hungerLevel: HungerLevelType::LITTLE_HUNGER,
             birthday: now()
         );
-        $largeMouseBass = new LargeMouseBass(
+        $bass = new Bass(
             nickName: 'テストブラックバス',
-            breed: new Breed(FishType::LARGE_MOUSE_BASS, BreedNameType::YOUKIHI),
+            breed: new Breed(FishType::BASS, BreedNameType::YOUKIHI),
             conditionLevel: ConditionLevelType::FINE,
             hungerLevel: HungerLevelType::STUFFED,
             birthday: now()
@@ -89,13 +89,13 @@ class FeedingUseCaseTest extends TestCase
         $tank = new Tank();
         $tank->addFish($medaka1);
         $tank->addFish($medaka2);
-        $tank->addFish($largeMouseBass);
+        $tank->addFish($bass);
         $this->tankManagerP->load()->willReturn($tank)->shouldBeCalled();
         $this->tankManagerP->save(
             Argument::that(
                 function (Tank $tank) {
                     $this->assertCount(1, $tank->getFishList(Medaka::class));
-                    $this->assertCount(1, $tank->getFishList(LargeMouseBass::class));
+                    $this->assertCount(1, $tank->getFishList(Bass::class));
 
                     $this->assertSame(HungerLevelType::STUFFED, $tank->getFishList()[0]->getHungerLevel());
                     $this->assertSame(HungerLevelType::STUFFED, $tank->getFishList()[1]->getHungerLevel());
